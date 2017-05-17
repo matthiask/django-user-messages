@@ -1,0 +1,4 @@
+include LICENSE
+include MANIFEST.in
+include README.rst
+recursive-include user_messages *.html *.po *.mo *.js *.css
