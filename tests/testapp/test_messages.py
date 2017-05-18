@@ -108,3 +108,26 @@ class MessagesTestCase(TestCase):
             client.get('/'),
             "<li class=\"info\">Hey http://example.com</li>",
         )
+
+    def test_admin(self):
+        user = User.objects.create_superuser(
+            'test', 'test@example.com', 'test'
+        )
+        api.info(user, 'Hi', meta={
+            'url': 'http://example.com',
+        })
+        m = list(api.get_messages(user=user))
+
+        client = Client()
+        client.force_login(user)
+
+        self.assertEqual(
+            client.get('/admin/user_messages/message/').status_code,
+            200,
+        )
+        self.assertEqual(
+            client.get(
+                '/admin/user_messages/message/{}/change/'.format(m[0].id),
+            ).status_code,
+            200,
+        )
