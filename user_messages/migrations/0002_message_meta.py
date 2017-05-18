@@ -16,6 +16,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='message',
             name='meta',
-            field=django.contrib.postgres.fields.jsonb.JSONField(default=dict, help_text='Additional data with user-/developer-defined significance.', verbose_name='meta data'),
+            field=django.contrib.postgres.fields.jsonb.JSONField(default=dict, blank=True, help_text='Additional data with user-/developer-defined significance.', verbose_name='meta data'),
         ),
     ]

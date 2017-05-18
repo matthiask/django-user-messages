@@ -33,6 +33,7 @@ class Message(models.Model):
     meta = JSONField(
         _('meta data'),
         default=dict,
+        blank=True,
         help_text=_(
             'Additional data with user-/developer-defined significance.'
         ),
