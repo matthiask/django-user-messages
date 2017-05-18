@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from django.test import Client, TestCase
 
 from user_messages import api
-from user_messages.models import Message
 
 
 def _messages(response):
@@ -35,13 +34,13 @@ class MessagesTestCase(TestCase):
 
         self.assertNotContains(
             anonymous.get('/'),
-            '<ul class="messages">',
+            '<ul class="messages"',
         )
 
         response = client.get('/')
         self.assertContains(
             response,
-            '<ul class="messages">',
+            '<ul class="messages" data-length="1">',
         )
         self.assertContains(
             response,
@@ -82,8 +81,12 @@ class MessagesTestCase(TestCase):
             'url': 'http://example.com',
         })
 
-        m = Message.objects.get()
+        m = api.get_messages(user=user)
         self.assertEqual(
-            m.meta,
+            len(m),
+            1,
+        )
+        self.assertEqual(
+            m[0].meta,
             {'url': 'http://example.com'},
         )

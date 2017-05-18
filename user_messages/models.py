@@ -41,3 +41,20 @@ class Message(models.Model):
     class Meta:
         verbose_name = _('message')
         verbose_name_plural = _('messages')
+
+    # Duck typing django.contrib.messages.storage.base.Message
+    def __str__(self):
+        return self.message['message']
+
+    @property
+    def tags(self):
+        return ' '.join(tag for tag in [
+            self.message['extra_tags'],
+            self.level_tag,
+        ] if tag)
+
+    @property
+    def level_tag(self):
+        from django.contrib.messages.storage.base import LEVEL_TAGS
+
+        return LEVEL_TAGS.get(self.message['level'], '')

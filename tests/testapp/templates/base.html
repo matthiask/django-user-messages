@@ -6,7 +6,7 @@
 <body>
   <h1>Hi, {{ user }}</h1>
   {% if messages %}
-  <ul class="messages">
+  <ul class="messages" data-length="{{ messages|length }}">
       {% for message in messages %}
       <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
       {% endfor %}
