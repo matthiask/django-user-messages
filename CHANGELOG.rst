@@ -5,6 +5,9 @@ Change log
 `Next version`_
 ===============
 
+- Fixed properties to be more forgiving with missing data.
+
+
 `0.3`_ (2017-05-18)
 ===================
 

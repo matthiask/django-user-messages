@@ -40,19 +40,19 @@ class Message(models.Model):
 
     @property
     def level(self):
-        return self.data['level']
+        return self.data.get('level', 20)  # INFO
 
     @property
     def message(self):
-        return self.data['message']
+        return self.data.get('message', '')
 
     @property
     def extra_tags(self):
-        return self.data['extra_tags']
+        return self.data.get('extra_tags', '')
 
     @property
     def level_tag(self):
-        return self.data['level_tag']
+        return self.data.get('level_tag', 'info')
 
     @property
     def tags(self):
@@ -63,4 +63,4 @@ class Message(models.Model):
 
     @property
     def meta(self):
-        return self.data['meta']
+        return self.data.get('meta', {})

@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.test import Client, TestCase
 
 from user_messages import api
+from user_messages.models import Message
 
 
 def _messages(response):
@@ -117,6 +118,11 @@ class MessagesTestCase(TestCase):
             'url': 'http://example.com',
         })
         m = list(api.get_messages(user=user))
+
+        # Quite invalid. Still, shouldn't crash.
+        Message.objects.create(
+            user=user,
+        )
 
         client = Client()
         client.force_login(user)
