@@ -38,16 +38,17 @@ def get_messages(*, request=None, user=None):
         if user is not None:
             from user_messages.models import Message
 
-            m = Message.objects.filter(
+            user_messages = Message.objects.filter(
                 user=user,
                 delivered_at__isnull=True,
             )
-            messages.extend(m)
-            m.filter(
-                deliver_once=True,
-            ).update(
-                delivered_at=timezone.now(),
-            )
+            messages.extend(user_messages)
+            if any(m.deliver_once for m in user_messages):
+                user_messages.filter(
+                    deliver_once=True,
+                ).update(
+                    delivered_at=timezone.now(),
+                )
 
         return messages
 
