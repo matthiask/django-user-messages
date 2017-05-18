@@ -90,3 +90,13 @@ class MessagesTestCase(TestCase):
             m[0].meta,
             {'url': 'http://example.com'},
         )
+
+        client = Client()
+        client.force_login(user)
+        api.info(user, 'Hey', meta={
+            'url': 'http://example.com',
+        })
+        self.assertContains(
+            client.get('/'),
+            "<li class=\"info\">Hey{'url': 'http://example.com'}</li>",
+        )
