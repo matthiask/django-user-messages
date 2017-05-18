@@ -5,6 +5,10 @@ Change log
 `Next version`_
 ===============
 
+- Merge the ``message`` and ``meta`` JSON fields into a single ``data``
+  field and imitate the ``Message`` object interface more closely.
+
+
 `0.2`_ (2017-05-18)
 ===================
 

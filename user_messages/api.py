@@ -8,15 +8,17 @@ from django.utils.functional import SimpleLazyObject
 def add_message(user, level, message, extra_tags='', *,
                 deliver_once=True, meta=None):
     from user_messages.models import Message
+    from django.contrib.messages.storage.base import LEVEL_TAGS
 
     Message.objects.create(
-        message={
+        data={
             'level': level,
+            'level_tag': LEVEL_TAGS.get(level, ''),
             'message': str(message),
             'extra_tags': extra_tags,
+            'meta': meta or {},
         },
         deliver_once=deliver_once,
-        meta=meta or {},
         **{'user' if isinstance(user, models.Model) else 'user_id': user}
     )
 

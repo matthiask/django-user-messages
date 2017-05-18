@@ -87,8 +87,16 @@ class MessagesTestCase(TestCase):
             1,
         )
         self.assertEqual(
-            m[0].meta,
-            {'url': 'http://example.com'},
+            m[0].data,
+            {
+                'message': 'Hi',
+                'level': 20,
+                'level_tag': 'info',
+                'extra_tags': '',
+                'meta': {
+                    'url': 'http://example.com',
+                },
+            },
         )
 
         client = Client()
@@ -98,5 +106,5 @@ class MessagesTestCase(TestCase):
         })
         self.assertContains(
             client.get('/'),
-            "<li class=\"info\">Hey{'url': 'http://example.com'}</li>",
+            "<li class=\"info\">Hey http://example.com</li>",
         )

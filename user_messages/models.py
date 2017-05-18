@@ -21,22 +21,13 @@ class Message(models.Model):
         verbose_name=_('user'),
         related_name='+',
     )
-    message = JSONField(
-        _('message'),
+    data = JSONField(
+        _('data'),
         default=dict,
     )
     deliver_once = models.BooleanField(
         _('deliver once'),
         default=True,
-    )
-
-    meta = JSONField(
-        _('meta data'),
-        default=dict,
-        blank=True,
-        help_text=_(
-            'Additional data with user-/developer-defined significance.'
-        ),
     )
 
     class Meta:
@@ -45,17 +36,31 @@ class Message(models.Model):
 
     # Duck typing django.contrib.messages.storage.base.Message
     def __str__(self):
-        return self.message['message']
+        return self.message
+
+    @property
+    def level(self):
+        return self.data['level']
+
+    @property
+    def message(self):
+        return self.data['message']
+
+    @property
+    def extra_tags(self):
+        return self.data['extra_tags']
+
+    @property
+    def level_tag(self):
+        return self.data['level_tag']
 
     @property
     def tags(self):
         return ' '.join(tag for tag in [
-            self.message['extra_tags'],
+            self.extra_tags,
             self.level_tag,
         ] if tag)
 
     @property
-    def level_tag(self):
-        from django.contrib.messages.storage.base import LEVEL_TAGS
-
-        return LEVEL_TAGS.get(self.message['level'], '')
+    def meta(self):
+        return self.data['meta']

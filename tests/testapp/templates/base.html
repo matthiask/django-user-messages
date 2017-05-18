@@ -8,7 +8,7 @@
   {% if messages %}
   <ul class="messages" data-length="{{ messages|length }}">
       {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}{% if message.meta %}{{ message.meta|safe }}{% endif %}</li>
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}{% if message.meta.url %} {{ message.meta.url }}{% endif %}</li>
       {% endfor %}
   </ul>
   {% endif %}
