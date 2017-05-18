@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.test import Client, TestCase
 
 from user_messages import api
+from user_messages.models import Message
 
 
 def _messages(response):
@@ -71,4 +72,18 @@ class MessagesTestCase(TestCase):
             client.get('/'),
             '<li class="error">Hello world</li>',
             1,
+        )
+
+    def test_meta(self):
+        user = User.objects.create_user(
+            'test', 'test@example.com', 'test'
+        )
+        api.info(user, 'Hi', meta={
+            'url': 'http://example.com',
+        })
+
+        m = Message.objects.get()
+        self.assertEqual(
+            m.meta,
+            {'url': 'http://example.com'},
         )

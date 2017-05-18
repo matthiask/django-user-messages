@@ -30,8 +30,13 @@ class Message(models.Model):
         default=True,
     )
 
-    # ContentType?
-    # object_id?
+    meta = JSONField(
+        _('meta data'),
+        default=dict,
+        help_text=_(
+            'Additional data with user-/developer-defined significance.'
+        ),
+    )
 
     class Meta:
         verbose_name = _('message')
