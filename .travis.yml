@@ -11,4 +11,4 @@ install:
   - pip install $REQ psycopg2 pytz
   - python setup.py install
 # command to run tests, e.g. python setup.py test
-script: "cd tests && ./manage.py test testapp"
+script: "cd tests && ./manage.py test -v 2 testapp"
