@@ -1,17 +1,18 @@
 from django.contrib.messages import constants
+from django.db import models
 
 from user_messages.models import Message
 
 
 def add_message(user, level, message, extra_tags='', *, deliver_once=True):
     Message.objects.create(
-        user=user,
         message={
             'level': level,
             'message': str(message),
             'extra_tags': extra_tags,
         },
         deliver_once=deliver_once,
+        **{'user' if isinstance(user, models.Model) else 'user_id': user}
     )
 
 
