@@ -137,3 +137,36 @@ class MessagesTestCase(TestCase):
             ).status_code,
             200,
         )
+
+    def test_both_frameworks(self):
+        user = User.objects.create_user(
+            'test', 'test@example.com', 'test'
+        )
+        client = Client()
+        client.force_login(user)
+
+        self.assertContains(
+            client.get('/produce_message/'),
+            'OK',
+        )
+        api.warning(
+            user,
+            'user_messages framework',
+        )
+
+        response = client.get('/')
+        self.assertContains(
+            response,
+            '<ul class="messages" data-length="2">',
+            1,
+        )
+        self.assertContains(
+            response,
+            '<li class="info">Default messages framework</li>',
+            1,
+        )
+        self.assertContains(
+            response,
+            '<li class="warning">user_messages framework</li>',
+            1,
+        )
