@@ -35,4 +35,5 @@ Change log
 
 .. _0.1: https://github.com/matthiask/django-user-messages/commit/3a9c0e329e
 .. _0.2: https://github.com/matthiask/django-user-messages/compare/0.1...0.2
-.. _Next version: https://github.com/matthiask/django-user-messages/compare/0.2...master
+.. _0.2: https://github.com/matthiask/django-user-messages/compare/0.2...0.3
+.. _Next version: https://github.com/matthiask/django-user-messages/compare/0.3...master
