@@ -1,54 +1,60 @@
 from __future__ import unicode_literals
 
 import os
+import re
+import subprocess
 import sys
 
 sys.path.append(os.path.abspath('..'))
 
+project = 'django-user-messages'
+author = 'Feinheit AG'
+copyright = '2017,' + author
+version = __import__('user_messages').__version__
+release = subprocess.check_output(
+    'git fetch --tags; git describe',
+    shell=True, universal_newlines=True).strip()
+language = 'en'
+
+#######################################
+project_slug = re.sub(r'[^a-z]+', '', project)
+
 extensions = []
-
 templates_path = ['_templates']
-
 source_suffix = '.rst'
-
 master_doc = 'index'
 
-project = 'django-user-messages'
-copyright = '2017 Feinheit AG'
-
-version = __import__('user_messages').__version__
-release = version
-
+exclude_patterns = ['build', 'Thumbs.db', '.DS_Store']
 pygments_style = 'sphinx'
+todo_include_todos = False
 
 html_theme = 'alabaster'
-
 html_static_path = ['_static']
+htmlhelp_basename = project_slug + 'doc'
 
-htmlhelp_basename = 'djangousermessagesdoc'
-
+latex_elements = {
+    'papersize': 'a4',
+}
 latex_documents = [(
-    'index',
-    'djangousermessages.tex',
-    'django-user-messages Documentation',
-    'Feinheit AG',
+    master_doc,
+    project_slug + '.tex',
+    project + ' Documentation',
+    author,
     'manual',
 )]
-
 man_pages = [(
-    'index',
-    'djangouser-messages',
-    'django-user-messages Documentation',
-    ['Feinheit AG'],
+    master_doc,
+    project_slug,
+    project + ' Documentation',
+    [author],
     1,
 )]
-
 texinfo_documents = [(
-    'index',
-    'djangousermessages',
-    'django-user-messages Documentation',
-    'Feinheit AG',
-    'djangousermessages',
-    'Offline addon for django.contrib.messages',
+    master_doc,
+    project_slug,
+    project + ' Documentation',
+    author,
+    project_slug,
+    '',  # Description
     'Miscellaneous',
 )]

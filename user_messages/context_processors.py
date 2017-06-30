@@ -1,4 +1,5 @@
 from django.contrib.messages.constants import DEFAULT_LEVELS
+
 from user_messages.api import get_messages
 
 
