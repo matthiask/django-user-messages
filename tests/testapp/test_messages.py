@@ -99,6 +99,8 @@ class MessagesTestCase(TestCase):
                 },
             },
         )
+        self.assertEqual(m[0].level, 20)
+        self.assertEqual(m[0].level_tag, 'info')
 
         client = Client()
         client.force_login(user)
