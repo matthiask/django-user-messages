@@ -15,11 +15,11 @@ django-user-messages - Offline addon for django.contrib.messages
 django-user-messages adds offline messaging support to Django's
 messaging framework. It achieves this by allowing to save messages in
 the database. The ``user_messages.api.get_messages`` utility and the
-context processor mentioned above transparently merge Django's messages
-and our own messages in a single list, therefore existing code works
-without any changes and without causing database writes.
-django-user-messages' functions have to be used explicitly. I consider
-this a feature, not a bug.
+``user_messages.context_processors.messages`` context processor
+transparently concatenate Django's messages and our own messages in a single
+list, therefore existing code works without any changes and without
+causing database writes.  django-user-messages' functions have to be
+used explicitly. I consider this a feature, not a bug.
 
 It is PostgreSQL-only because Django currently only has builtin support
 for PostgreSQL's JSON field.
@@ -73,10 +73,14 @@ templates::
 
     {% if messages %}
       <ul class="messages">
+      {% for message in messages %}
         <li class="{{ message.tags }}".>
           {% if message.meta.url %}<a href="{{ message.meta.url }}">{% endif %}
           {{ message }}
           {% if message.meta.url %}</a>{% endif %}
         </li>
+      {% endfor %}
       </ul>
     {% endif %}
+
+django-user-messages' messages are also evaluated lazily.
