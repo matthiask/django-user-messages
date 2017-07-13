@@ -6,6 +6,9 @@ Change log
 ===============
 
 - Fixed properties to be more forgiving with missing data.
+- Added tox configuration for running tests and coding style checks and for
+  building the docs.
+- Improved documentation and test coverage.
 
 
 `0.3`_ (2017-05-18)
