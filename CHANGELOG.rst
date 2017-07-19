@@ -5,6 +5,9 @@ Change log
 `Next version`_
 ===============
 
+`0.4`_ (2017-07-19)
+===================
+
 - **Backwards incompatible** Rebuilt the model to not use Django's
   ``JSONField`` at all. This design decision unnecessarily restricted
   the areas where django-user-messages was usable.
@@ -42,4 +45,5 @@ Change log
 .. _0.1: https://github.com/matthiask/django-user-messages/commit/3a9c0e329e
 .. _0.2: https://github.com/matthiask/django-user-messages/compare/0.1...0.2
 .. _0.3: https://github.com/matthiask/django-user-messages/compare/0.2...0.3
-.. _Next version: https://github.com/matthiask/django-user-messages/compare/0.3...master
+.. _0.4: https://github.com/matthiask/django-user-messages/compare/0.3...0.4
+.. _Next version: https://github.com/matthiask/django-user-messages/compare/0.4...master
