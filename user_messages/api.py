@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth import SESSION_KEY
 from django.contrib.messages import api, constants
 from django.db import models
@@ -11,13 +13,10 @@ def add_message(user, level, message, extra_tags='', *,
     from django.contrib.messages.storage.base import LEVEL_TAGS
 
     Message.objects.create(
-        data={
-            'level': level,
-            'level_tag': LEVEL_TAGS.get(level, ''),
-            'message': str(message),
-            'extra_tags': extra_tags,
-            'meta': meta or {},
-        },
+        level=level or 20,  # INFO
+        message=message,
+        extra_tags=extra_tags,
+        _metadata=json.dumps(meta or {}),
         deliver_once=deliver_once,
         **{'user' if isinstance(user, models.Model) else 'user_id': user}
     )

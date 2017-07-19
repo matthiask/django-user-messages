@@ -5,6 +5,9 @@ Change log
 `Next version`_
 ===============
 
+- **Backwards incompatible** Rebuilt the model to not use Django's
+  ``JSONField`` at all. This design decision unnecessarily restricted
+  the areas where django-user-messages was usable.
 - Fixed properties to be more forgiving with missing data.
 - Added tox configuration for running tests and coding style checks and for
   building the docs.

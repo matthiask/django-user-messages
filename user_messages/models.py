@@ -1,7 +1,10 @@
+import json
+
 from django.conf import settings
-from django.contrib.postgres.fields import JSONField
+from django.contrib.messages.storage.base import LEVEL_TAGS
 from django.db import models
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -21,9 +24,19 @@ class Message(models.Model):
         verbose_name=_('user'),
         related_name='+',
     )
-    data = JSONField(
-        _('data'),
-        default=dict,
+    level = models.IntegerField(
+        _('level'),
+    )
+    message = models.TextField(
+        _('message'),
+    )
+    extra_tags = models.TextField(
+        _('extra tags'),
+        blank=True,
+    )
+    _metadata = models.TextField(
+        _('meta data'),
+        blank=True,
     )
     deliver_once = models.BooleanField(
         _('deliver once'),
@@ -39,20 +52,8 @@ class Message(models.Model):
         return self.message
 
     @property
-    def level(self):
-        return self.data.get('level', 20)  # INFO
-
-    @property
-    def message(self):
-        return self.data.get('message', '')
-
-    @property
-    def extra_tags(self):
-        return self.data.get('extra_tags', '')
-
-    @property
     def level_tag(self):
-        return self.data.get('level_tag', 'info')
+        return LEVEL_TAGS.get(self.level, '')
 
     @property
     def tags(self):
@@ -61,6 +62,11 @@ class Message(models.Model):
             self.level_tag,
         ] if tag)
 
-    @property
+    @cached_property
     def meta(self):
-        return self.data.get('meta', {})
+        if self._metadata:
+            try:
+                return json.loads(self._metadata)
+            except:
+                pass
+        return {}

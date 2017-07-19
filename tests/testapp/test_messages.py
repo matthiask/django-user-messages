@@ -88,15 +88,9 @@ class MessagesTestCase(TestCase):
             1,
         )
         self.assertEqual(
-            m[0].data,
+            m[0].meta,
             {
-                'message': 'Hi',
-                'level': 20,
-                'level_tag': 'info',
-                'extra_tags': '',
-                'meta': {
-                    'url': 'http://example.com',
-                },
+                'url': 'http://example.com',
             },
         )
         self.assertEqual(m[0].level, 20)
@@ -124,6 +118,7 @@ class MessagesTestCase(TestCase):
         # Quite invalid. Still, shouldn't crash.
         Message.objects.create(
             user=user,
+            level=20,
         )
 
         client = Client()

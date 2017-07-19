@@ -21,9 +21,6 @@ list, therefore existing code works without any changes and without
 causing database writes.  django-user-messages' functions have to be
 used explicitly. I consider this a feature, not a bug.
 
-It is PostgreSQL-only because Django currently only has builtin support
-for PostgreSQL's JSON field.
-
 
 Installation
 ============
