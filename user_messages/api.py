@@ -10,7 +10,6 @@ from django.utils.functional import SimpleLazyObject
 def add_message(user, level, message, extra_tags='', *,
                 deliver_once=True, meta=None):
     from user_messages.models import Message
-    from django.contrib.messages.storage.base import LEVEL_TAGS
 
     Message.objects.create(
         level=level or 20,  # INFO
