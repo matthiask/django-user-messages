@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-26 10:29+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps.py:7
+msgid "user messages"
+msgstr "Mitteilungen für Nutzer"
+
+#: models.py:13
+msgid "created at"
+msgstr "erstellt um"
+
+#: models.py:17
+msgid "delivered at"
+msgstr "zugestellt um"
+
+#: models.py:24
+msgid "user"
+msgstr "Nutzer"
+
+#: models.py:28
+msgid "level"
+msgstr "Stufe"
+
+#: models.py:31 models.py:47
+msgid "message"
+msgstr "Mitteilung"
+
+#: models.py:34
+msgid "extra tags"
+msgstr "zusätzliche Tags"
+
+#: models.py:38
+msgid "meta data"
+msgstr "Metadaten"
+
+#: models.py:42
+msgid "deliver once"
+msgstr "einmal zustellen"
+
+#: models.py:48
+msgid "messages"
+msgstr "Mitteilungen"

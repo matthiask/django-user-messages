@@ -5,6 +5,9 @@ Change log
 `Next version`_
 ===============
 
+- Added german translations and a nice app name.
+
+
 `0.4`_ (2017-07-19)
 ===================
 
