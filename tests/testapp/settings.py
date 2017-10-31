@@ -3,8 +3,8 @@ import os
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'user_messages',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:',
     }
 }
 
