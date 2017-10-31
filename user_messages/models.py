@@ -67,6 +67,6 @@ class Message(models.Model):
         if self._metadata:
             try:
                 return json.loads(self._metadata)
-            except:
+            except Exception:
                 pass
         return {}
