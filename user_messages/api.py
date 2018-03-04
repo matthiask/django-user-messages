@@ -7,8 +7,8 @@ from django.utils import timezone
 from django.utils.functional import SimpleLazyObject
 
 
-def add_message(user, level, message, extra_tags='', *,
-                deliver_once=True, meta=None):
+def add_message(user, level, message, extra_tags='',
+                deliver_once=True, meta=None, *args):
     from user_messages.models import Message
 
     Message.objects.create(
@@ -21,12 +21,11 @@ def add_message(user, level, message, extra_tags='', *,
     )
 
 
-def get_messages(*, request=None, user=None):
+def get_messages(request=None, user=None, *args):
     assert bool(request) != bool(user), 'Pass exactly one of request or user'
-
+    _nonlocal = (request,user)
     def fetch():
-        nonlocal user
-
+        request, user = _nonlocal
         messages = []
 
         if request is not None:
