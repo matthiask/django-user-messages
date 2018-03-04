@@ -5,7 +5,12 @@ Change log
 `Next version`_
 ===============
 
+`0.5`_ (2018-03-04)
+===================
+
 - Added german translations and a nice app name.
+- Changed the implementation of keyword-only arguments to be compatible
+  with Python 2.
 
 
 `0.4`_ (2017-07-19)
@@ -49,4 +54,5 @@ Change log
 .. _0.2: https://github.com/matthiask/django-user-messages/compare/0.1...0.2
 .. _0.3: https://github.com/matthiask/django-user-messages/compare/0.2...0.3
 .. _0.4: https://github.com/matthiask/django-user-messages/compare/0.3...0.4
-.. _Next version: https://github.com/matthiask/django-user-messages/compare/0.4...master
+.. _0.5: https://github.com/matthiask/django-user-messages/compare/0.4...0.5
+.. _Next version: https://github.com/matthiask/django-user-messages/compare/0.5...master
