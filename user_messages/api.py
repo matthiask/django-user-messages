@@ -1,4 +1,5 @@
 import json
+from functools import wraps
 
 from django.contrib.auth import SESSION_KEY
 from django.contrib.messages import api, constants
@@ -7,8 +8,28 @@ from django.utils import timezone
 from django.utils.functional import SimpleLazyObject
 
 
+def _positional(count):
+    """
+    Only allows ``count`` positional arguments to the decorated callable
+
+    Will be removed as soon as we drop support for Python 2.
+    """
+    def _dec(fn):
+        @wraps(fn)
+        def _fn(*args, **kwargs):
+            if len(args) > count:
+                raise TypeError('Only %s positional argument%s allowed' % (
+                    count,
+                    '' if count == 1 else 's',
+                ))
+            return fn(*args, **kwargs)
+        return _fn
+    return _dec
+
+
+@_positional(4)
 def add_message(user, level, message, extra_tags='',
-                deliver_once=True, meta=None, *args):
+                deliver_once=True, meta=None):
     from user_messages.models import Message
 
     Message.objects.create(
@@ -21,12 +42,14 @@ def add_message(user, level, message, extra_tags='',
     )
 
 
-def get_messages(request=None, user=None, *args):
+@_positional(0)
+def get_messages(request=None, user=None):
     assert bool(request) != bool(user), 'Pass exactly one of request or user'
-    _nonlocal = (request,user)
+    _nonlocal = (user,)
+
     def fetch():
-        request, user = _nonlocal
         messages = []
+        user, = _nonlocal
 
         if request is not None:
             messages.extend(api.get_messages(request))
@@ -55,6 +78,7 @@ def get_messages(request=None, user=None, *args):
 
 
 def _create_shortcut(level):
+    @_positional(3)
     def helper(user, message, extra_tags='', deliver_once=True, meta=None):
         add_message(user, level, message, extra_tags=extra_tags,
                     deliver_once=deliver_once, meta=meta)
