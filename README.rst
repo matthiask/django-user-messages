@@ -30,7 +30,10 @@ Installation
 - Replace the default messages context processor with
   ``user_messages.context_processors.messages``. The context processor
   provides both django.contrib.messages' and django-user-messages'
-  messages.
+  messages. Note that Django 2.2's admin app checks for the presence of
+  the default messages context processor, so you'll have to silence this
+  check by adding ``"admin.E404"`` to the ``SILENCED_SYSTEM_CHECKS``
+  setting.
 - Use ``user_messages.api`` as you would use
   ``django.contrib.messages`` except that you pass the user model or ID
   as first parameter, not the current request.

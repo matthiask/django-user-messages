@@ -6,6 +6,8 @@ Change log
 ===============
 
 - Reformatted the code using black.
+- Added a hint about silencing the messages context processor system
+  check under Django 2.2.
 
 
 `0.5`_ (2018-03-04)

@@ -96,18 +96,8 @@ class MessagesTestCase(TestCase):
     def test_invalid_meta(self):
         user = User.objects.create_user("test", "test@example.com", "test")
         # Do not go through the API, it does not allow creating such brokenness
-        m = Message.objects.create(
-            user=user,
-            level=10,
-            message="",
-            _metadata="",
-        )
+        m = Message.objects.create(user=user, level=10, message="", _metadata="")
         self.assertEqual(m.meta, {})
 
-        m = Message.objects.create(
-            user=user,
-            level=10,
-            message="",
-            _metadata="asdf",
-        )
+        m = Message.objects.create(user=user, level=10, message="", _metadata="asdf")
         self.assertEqual(m.meta, {})

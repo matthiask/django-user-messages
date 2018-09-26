@@ -50,3 +50,5 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+SILENCED_SYSTEM_CHECKS = ["admin.E404"]
