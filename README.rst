@@ -9,9 +9,6 @@ django-user-messages - Offline addon for django.contrib.messages
     :target: https://django-user-messages.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-.. image:: https://codeclimate.com/github/matthiask/django-user-messages.png
-    :target: https://codeclimate.com/github/matthiask/django-user-messages
-
 django-user-messages adds offline messaging support to Django's
 messaging framework. It achieves this by allowing to save messages in
 the database. The ``user_messages.api.get_messages`` utility and the
