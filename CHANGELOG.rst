@@ -5,6 +5,10 @@ Change log
 `Next version`_
 ===============
 
+
+`0.6`_ (2018-09-26)
+===================
+
 - Reformatted the code using black.
 - Added a hint about silencing the messages context processor system
   check under Django 2.2.
@@ -60,4 +64,5 @@ Change log
 .. _0.3: https://github.com/matthiask/django-user-messages/compare/0.2...0.3
 .. _0.4: https://github.com/matthiask/django-user-messages/compare/0.3...0.4
 .. _0.5: https://github.com/matthiask/django-user-messages/compare/0.4...0.5
-.. _Next version: https://github.com/matthiask/django-user-messages/compare/0.5...master
+.. _0.6: https://github.com/matthiask/django-user-messages/compare/0.5...0.6
+.. _Next version: https://github.com/matthiask/django-user-messages/compare/0.6...master
