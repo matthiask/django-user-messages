@@ -14,22 +14,24 @@ def _positional(count):
 
     Will be removed as soon as we drop support for Python 2.
     """
+
     def _dec(fn):
         @wraps(fn)
         def _fn(*args, **kwargs):
-            if len(args) > count:
-                raise TypeError('Only %s positional argument%s allowed' % (
-                    count,
-                    '' if count == 1 else 's',
-                ))
+            if len(args) > count:  # pragma: no cover
+                raise TypeError(
+                    "Only %s positional argument%s allowed"
+                    % (count, "" if count == 1 else "s")
+                )
             return fn(*args, **kwargs)
+
         return _fn
+
     return _dec
 
 
 @_positional(4)
-def add_message(user, level, message, extra_tags='',
-                deliver_once=True, meta=None):
+def add_message(user, level, message, extra_tags="", deliver_once=True, meta=None):
     from user_messages.models import Message
 
     Message.objects.create(
@@ -38,13 +40,13 @@ def add_message(user, level, message, extra_tags='',
         extra_tags=extra_tags,
         _metadata=json.dumps(meta or {}),
         deliver_once=deliver_once,
-        **{'user' if isinstance(user, models.Model) else 'user_id': user}
+        **{"user" if isinstance(user, models.Model) else "user_id": user}
     )
 
 
 @_positional(0)
 def get_messages(request=None, user=None):
-    assert bool(request) != bool(user), 'Pass exactly one of request or user'
+    assert bool(request) != bool(user), "Pass exactly one of request or user"
     _nonlocal = (user,)
 
     def fetch():
@@ -53,23 +55,17 @@ def get_messages(request=None, user=None):
 
         if request is not None:
             messages.extend(api.get_messages(request))
-            if (request.session.get(SESSION_KEY) and
-                    request.user.is_authenticated):
+            if request.session.get(SESSION_KEY) and request.user.is_authenticated:
                 user = request.user
 
         if user is not None:
             from user_messages.models import Message
 
-            user_messages = Message.objects.filter(
-                user=user,
-                delivered_at__isnull=True,
-            )
+            user_messages = Message.objects.filter(user=user, delivered_at__isnull=True)
             messages.extend(user_messages)
             if any(m.deliver_once for m in user_messages):
-                user_messages.filter(
-                    deliver_once=True,
-                ).update(
-                    delivered_at=timezone.now(),
+                user_messages.filter(deliver_once=True).update(
+                    delivered_at=timezone.now()
                 )
 
         return messages
@@ -79,9 +75,16 @@ def get_messages(request=None, user=None):
 
 def _create_shortcut(level):
     @_positional(3)
-    def helper(user, message, extra_tags='', deliver_once=True, meta=None):
-        add_message(user, level, message, extra_tags=extra_tags,
-                    deliver_once=deliver_once, meta=meta)
+    def helper(user, message, extra_tags="", deliver_once=True, meta=None):
+        add_message(
+            user,
+            level,
+            message,
+            extra_tags=extra_tags,
+            deliver_once=deliver_once,
+            meta=meta,
+        )
+
     return helper
 
 

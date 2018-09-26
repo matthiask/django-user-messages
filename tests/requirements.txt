@@ -1,4 +1,0 @@
-Django
-pytz
-coverage
-psycopg2

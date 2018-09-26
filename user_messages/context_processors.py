@@ -9,6 +9,6 @@ def messages(request):
     'DEFAULT_MESSAGE_LEVELS'.
     """
     return {
-        'messages': get_messages(request=request),
-        'DEFAULT_MESSAGE_LEVELS': DEFAULT_LEVELS,
+        "messages": get_messages(request=request),
+        "DEFAULT_MESSAGE_LEVELS": DEFAULT_LEVELS,
     }

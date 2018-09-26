@@ -5,6 +5,9 @@ Change log
 `Next version`_
 ===============
 
+- Reformatted the code using black.
+
+
 `0.5`_ (2018-03-04)
 ===================
 
