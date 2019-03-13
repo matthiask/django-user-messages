@@ -1,4 +1,5 @@
 import json
+import sys
 
 from django.conf import settings
 from django.contrib.messages.storage.base import LEVEL_TAGS
@@ -27,9 +28,15 @@ class Message(models.Model):
         verbose_name = _("message")
         verbose_name_plural = _("messages")
 
-    # Duck typing django.contrib.messages.storage.base.Message
-    def __str__(self):
-        return self.message
+    if sys.version_info[0] < 3:  # pragma: no cover
+
+        def __unicode__(self):
+            return self.message
+
+    else:
+        # Duck typing django.contrib.messages.storage.base.Message
+        def __str__(self):
+            return self.message
 
     @property
     def level_tag(self):
