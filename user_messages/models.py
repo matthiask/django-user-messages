@@ -28,6 +28,7 @@ class Message(models.Model):
         verbose_name = _("message")
         verbose_name_plural = _("messages")
 
+    # Django 3.0 will not ship python_2_unicode_compatible anymore...
     if sys.version_info[0] < 3:  # pragma: no cover
 
         def __unicode__(self):
