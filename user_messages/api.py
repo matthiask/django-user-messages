@@ -61,7 +61,9 @@ def get_messages(request=None, user=None):
         if user is not None:
             from user_messages.models import Message
 
-            user_messages = Message.objects.filter(user=user, delivered_at__isnull=True)
+            user_messages = Message.objects.filter(
+                user=user, delivered_at__isnull=True
+            ).order_by("pk")
             messages.extend(user_messages)
             if any(m.deliver_once for m in user_messages):
                 user_messages.filter(deliver_once=True).update(

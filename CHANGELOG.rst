@@ -7,6 +7,7 @@ Change log
 
 - Fixed a crash because of unicode strings being returned from
   ``Message.__str__`` in Python 2.
+- Order messages upon retrieval.
 
 
 `0.6`_ (2018-09-26)
