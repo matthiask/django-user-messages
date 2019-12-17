@@ -8,6 +8,7 @@ Change log
 - Fixed a crash because of unicode strings being returned from
   ``Message.__str__`` in Python 2.
 - Order messages upon retrieval.
+- Added Django 3.0 to the Travis CI matrix.
 
 
 `0.6`_ (2018-09-26)

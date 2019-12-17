@@ -51,7 +51,7 @@ def get_messages(request=None, user=None):
 
     def fetch():
         messages = []
-        user, = _nonlocal
+        (user,) = _nonlocal
 
         if request is not None:
             messages.extend(api.get_messages(request))
