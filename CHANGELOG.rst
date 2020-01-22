@@ -5,10 +5,15 @@ Change log
 `Next version`_
 ===============
 
+`0.7`_ (2020-01-22)
+===================
+
 - Fixed a crash because of unicode strings being returned from
   ``Message.__str__`` in Python 2.
 - Order messages upon retrieval.
 - Added Django 3.0 to the Travis CI matrix.
+- Replaced ``ugettext*`` with ``gettext*`` to avoid deprecation
+  warnings.
 
 
 `0.6`_ (2018-09-26)
@@ -70,4 +75,5 @@ Change log
 .. _0.4: https://github.com/matthiask/django-user-messages/compare/0.3...0.4
 .. _0.5: https://github.com/matthiask/django-user-messages/compare/0.4...0.5
 .. _0.6: https://github.com/matthiask/django-user-messages/compare/0.5...0.6
-.. _Next version: https://github.com/matthiask/django-user-messages/compare/0.6...master
+.. _0.7: https://github.com/matthiask/django-user-messages/compare/0.6...0.7
+.. _Next version: https://github.com/matthiask/django-user-messages/compare/0.7...master
