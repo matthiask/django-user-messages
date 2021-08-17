@@ -5,6 +5,10 @@ Change log
 `Next version`_
 ===============
 
+- Switched to a declarative setup.
+- Switched from Travis CI to GitHub actions.
+
+
 `0.7`_ (2020-01-22)
 ===================
 

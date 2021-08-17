@@ -42,5 +42,6 @@ def check_context_processors(app_configs, **kwargs):
 
 
 class UserMessagesConfig(AppConfig):
+    default_auto_field = "django.db.models.AutoField"
     name = "user_messages"
     verbose_name = capfirst(_("user messages"))
