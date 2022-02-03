@@ -1,4 +1,3 @@
-from django import VERSION
 from django.apps import AppConfig
 from django.conf import settings
 from django.core import checks
@@ -11,10 +10,6 @@ from django.utils.translation import gettext_lazy as _
 @checks.register()
 def check_context_processors(app_configs, **kwargs):
     errors = []
-
-    if VERSION < (2, 2):
-        # The admin.E404 check has been introduced in the Django 2.2 cycle.
-        return errors
 
     for engine in engines.all():
         if isinstance(engine, DjangoTemplates):

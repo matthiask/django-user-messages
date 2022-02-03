@@ -5,6 +5,9 @@ Change log
 `Next version`_
 ===============
 
+- Added pre-commit.
+- Raised the version requirements to Python >= 3.8, Django >= 3.2.
+
 
 `0.8`_ (2022-02-03)
 ===================

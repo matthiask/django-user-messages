@@ -70,9 +70,7 @@ class MessagesTestCase(TestCase):
 
         self.assertEqual(client.get("/admin/user_messages/message/").status_code, 200)
         self.assertEqual(
-            client.get(
-                "/admin/user_messages/message/{}/change/".format(m[0].id)
-            ).status_code,
+            client.get(f"/admin/user_messages/message/{m[0].id}/change/").status_code,
             200,
         )
 
