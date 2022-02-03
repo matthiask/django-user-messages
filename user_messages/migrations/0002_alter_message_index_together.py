@@ -8,12 +8,12 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('user_messages', '0001_initial'),
+        ("user_messages", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterIndexTogether(
-            name='message',
-            index_together={('user', 'delivered_at')},
+            name="message",
+            index_together={("user", "delivered_at")},
         ),
     ]

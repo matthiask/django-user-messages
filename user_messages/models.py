@@ -27,7 +27,7 @@ class Message(models.Model):
     class Meta:
         verbose_name = _("message")
         verbose_name_plural = _("messages")
-        index_together = (("user", "delivered_at"), )
+        index_together = (("user", "delivered_at"),)
 
     # Django 3.0 will not ship python_2_unicode_compatible anymore...
     if sys.version_info[0] < 3:  # pragma: no cover
