@@ -5,8 +5,14 @@ Change log
 `Next version`_
 ===============
 
+
+`0.8`_ (2022-02-03)
+===================
+
 - Switched to a declarative setup.
 - Switched from Travis CI to GitHub actions.
+- Added a composite index to reduce database load when fetching messages.
+  Thanks @tpatterson!
 
 
 `0.7`_ (2020-01-22)
@@ -80,4 +86,5 @@ Change log
 .. _0.5: https://github.com/matthiask/django-user-messages/compare/0.4...0.5
 .. _0.6: https://github.com/matthiask/django-user-messages/compare/0.5...0.6
 .. _0.7: https://github.com/matthiask/django-user-messages/compare/0.6...0.7
-.. _Next version: https://github.com/matthiask/django-user-messages/compare/0.7...master
+.. _0.8: https://github.com/matthiask/django-user-messages/compare/0.7...0.8
+.. _Next version: https://github.com/matthiask/django-user-messages/compare/0.8...main
