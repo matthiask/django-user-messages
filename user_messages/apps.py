@@ -38,6 +38,16 @@ def check_context_processors(app_configs, **kwargs):
                 )
             )
 
+    if ("admin.E406" not in settings.SILENCED_SYSTEM_CHECKS and
+    "django.contrib.messages" not in settings.INSTALLED_APPS):
+        errors.append(
+            checks.Error(
+                "If using 'user_messages' instead of django.contrib.messages"
+                " you have to add 'admin.E406' to SILENCED_SYSTEM_CHECKS.",
+                id="user_messages.E002",
+            )
+        )
+
     return errors
 
 
