@@ -7,6 +7,9 @@ Change log
 
 - Added pre-commit.
 - Raised the version requirements to Python >= 3.8, Django >= 3.2.
+- Replaced the system check with a version which only cares about adding our
+  context processor *after* the default messages context processor and about
+  nothing else.
 
 
 `0.8`_ (2022-02-03)

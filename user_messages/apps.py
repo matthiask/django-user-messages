@@ -1,5 +1,4 @@
 from django.apps import AppConfig
-from django.conf import settings
 from django.core import checks
 from django.template import engines
 from django.template.backends.django import DjangoTemplates
@@ -13,25 +12,23 @@ def check_context_processors(app_configs, **kwargs):
 
     for engine in engines.all():
         if isinstance(engine, DjangoTemplates):
-            django_templates_instance = engine.engine
-            break
-    else:
-        django_templates_instance = None
-
-    if django_templates_instance:
-        if (
-            "django.contrib.messages.context_processors.messages"
-            not in django_templates_instance.context_processors
-            and "admin.E404" not in settings.SILENCED_SYSTEM_CHECKS
-        ):
-            errors.append(
-                checks.Error(
-                    "If using 'user_messages.context_processors.messages'"
-                    " instead of the official messages context processor"
-                    " you have to add 'admin.E404' to SILENCED_SYSTEM_CHECKS.",
-                    id="user_messages.E001",
+            context_processors = engine.engine.context_processors
+            try:
+                dj = context_processors.index(
+                    "django.contrib.messages.context_processors.messages"
                 )
-            )
+                um = context_processors.index(
+                    "user_messages.context_processors.messages"
+                )
+            except ValueError:
+                continue
+            if um < dj:
+                errors.append(
+                    checks.Error(
+                        "Insert 'user_messages.context_processors.messages' after 'django.contrib.messages.context_processors.messages' so that the 'messages' context variable actually contains user messages.",
+                        id="user_messages.E002",
+                    )
+                )
 
     return errors
 
