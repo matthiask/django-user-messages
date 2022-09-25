@@ -1,7 +1,7 @@
 from django.contrib import admin, messages
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.urls import re_path
+from django.urls import path
 
 
 def produce_message(request):
@@ -10,8 +10,8 @@ def produce_message(request):
 
 
 urlpatterns = [
-    re_path(r"^admin/", admin.site.urls),
-    re_path(r"^$", lambda request: render(request, "base.html")),
-    re_path(r"^produce_message/$", produce_message),
-    re_path(r"^404/$", lambda request: render(request, "404.html")),
+    path("admin/", admin.site.urls),
+    path("", lambda request: render(request, "base.html")),
+    path("produce_message/", produce_message),
+    path("404/", lambda request: render(request, "404.html")),
 ]

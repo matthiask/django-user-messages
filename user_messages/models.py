@@ -1,5 +1,4 @@
 import json
-import sys
 
 from django.conf import settings
 from django.contrib.messages.storage.base import LEVEL_TAGS
