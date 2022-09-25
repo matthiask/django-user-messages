@@ -29,16 +29,9 @@ class Message(models.Model):
         verbose_name_plural = _("messages")
         index_together = (("user", "delivered_at"),)
 
-    # Django 3.0 will not ship python_2_unicode_compatible anymore...
-    if sys.version_info[0] < 3:  # pragma: no cover
-
-        def __unicode__(self):
-            return self.message
-
-    else:
+    def __str__(self):
         # Duck typing django.contrib.messages.storage.base.Message
-        def __str__(self):
-            return self.message
+        return self.message
 
     @property
     def level_tag(self):
