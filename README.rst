@@ -17,13 +17,10 @@ Installation
 
 - Install ``django-user-messages`` using pip into your virtualenv.
 - Add ``user_messages`` to ``INSTALLED_APPS`` and run ``migrate``.
-- Replace the default messages context processor with
-  ``user_messages.context_processors.messages``. The context processor
-  provides both django.contrib.messages' and django-user-messages'
-  messages. Note that Django 2.2's admin app checks for the presence of
-  the default messages context processor, so you'll have to silence this
-  check by adding ``"admin.E404"`` to the ``SILENCED_SYSTEM_CHECKS``
-  setting.
+- Add the ``user_messages.context_processors.messages`` message processor
+  somewhere *after* the default messages processor. Django's admin app checks
+  for the presence of the latter so you cannot simply remove it (except if you
+  want to silence the ``"admin.E404"`` system check).
 - Use ``user_messages.api`` as you would use
   ``django.contrib.messages`` except that you pass the user model or ID
   as first parameter, not the current request.

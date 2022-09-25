@@ -5,6 +5,13 @@ Change log
 `Next version`_
 ===============
 
+.. _Next version: https://github.com/matthiask/django-user-messages/compare/1.0...main
+
+`1.0`_ (2022-09-25)
+===================
+
+.. _1.0: https://github.com/matthiask/django-user-messages/compare/0.8...1.0
+
 - Added pre-commit.
 - Raised the version requirements to Python >= 3.8, Django >= 3.2.
 - Replaced the system check with a version which only cares about adding our
@@ -93,4 +100,3 @@ Change log
 .. _0.6: https://github.com/matthiask/django-user-messages/compare/0.5...0.6
 .. _0.7: https://github.com/matthiask/django-user-messages/compare/0.6...0.7
 .. _0.8: https://github.com/matthiask/django-user-messages/compare/0.7...0.8
-.. _Next version: https://github.com/matthiask/django-user-messages/compare/0.8...main
