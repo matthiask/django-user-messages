@@ -24,9 +24,11 @@ class Message(models.Model):
     deliver_once = models.BooleanField(_("deliver once"), default=True)
 
     class Meta:
+        indexes = [
+            models.Index("user", "delivered_at", name="user_delivered_at"),
+        ]
         verbose_name = _("message")
         verbose_name_plural = _("messages")
-        index_together = (("user", "delivered_at"),)
 
     def __str__(self):
         # Duck typing django.contrib.messages.storage.base.Message
