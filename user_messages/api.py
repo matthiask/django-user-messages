@@ -16,7 +16,7 @@ def add_message(user, level, message, extra_tags="", *, deliver_once=True, meta=
         extra_tags=extra_tags,
         _metadata=json.dumps(meta or {}),
         deliver_once=deliver_once,
-        **{"user" if isinstance(user, models.Model) else "user_id": user}
+        **{"user" if isinstance(user, models.Model) else "user_id": user},
     )
 
 
