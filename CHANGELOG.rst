@@ -2,12 +2,16 @@
 Change log
 ==========
 
-`Next version`_
-===============
+Next version
+============
 
-.. _Next version: https://github.com/matthiask/django-user-messages/compare/1.0...main
+1.1 (2024-09-11)
+================
 
 - Added Django 5.0, 5.1 compatibility.
+- Squashed migrations to remove uses of ``index_together`` which wasn't liked
+  by newer versions of Django.
+
 
 `1.0`_ (2022-09-25)
 ===================
