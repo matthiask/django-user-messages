@@ -7,6 +7,8 @@ Change log
 
 .. _Next version: https://github.com/matthiask/django-user-messages/compare/1.0...main
 
+- Added Django 5.0, 5.1 compatibility.
+
 `1.0`_ (2022-09-25)
 ===================
 
